@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Button, MessageBox } from "react-chat-elements";
+import { MessageBox } from "react-chat-elements";
 import "react-chat-elements/dist/main.css";
 import { useState } from "react";
 import axios from "axios";
@@ -77,16 +77,8 @@ function App() {
   };
 
   return (
-    <div style={{ width: "100%", display: 'flex' }}>
-      <div
-        style={{
-          width: "50%",
-          backgroundColor: "grey",
-          padding: "16px",
-          border: "1px solid black",
-          borderRadius: "5px!important",
-        }}
-      >
+    <div className="d-flex justify-content-betweeen">
+      <div className="p-3 w-50">
         <h2>Chat</h2>
         <div>
           {messages
@@ -112,18 +104,21 @@ function App() {
             }
           }}
         >
-          <input
-            type="text"
-            name="input"
+          <div className="d-flex mt-3">
+          <textarea
             placeholder="Type your message..."
             disabled={isTyping}
+            className="form-control"
           />
-          <button type="submit" disabled={isTyping}>
+          <div>
+          <button type="submit" disabled={isTyping}  className="btn btn-info m-3">
             Send
           </button>
+          </div>
+          </div>
         </form>
       </div>
-      <div style={{ width: "50%" }}>
+      <div className="w-50 p-3">
         <Form schema={schema} validator={validator} />
       </div>
     </div>
