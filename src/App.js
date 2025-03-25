@@ -89,6 +89,7 @@ function App() {
                 type={"text"}
                 title={message.role}
                 text={message.content}
+                key={index}
                 titleColor={message.role === "user" ? "red" : "blue"}
               />
             ))}
@@ -97,7 +98,7 @@ function App() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            const input = e.target.input.value;
+            const input = e.target.question.value;
             if (input.trim() !== "") {
               handleSendMessage(input);
               e.target.reset();
@@ -109,6 +110,7 @@ function App() {
             placeholder="Type your message..."
             disabled={isTyping}
             className="form-control"
+            name="question"
           />
           <div>
           <button type="submit" disabled={isTyping}  className="btn btn-info m-3">
@@ -119,7 +121,7 @@ function App() {
         </form>
       </div>
       <div className="w-50 p-3">
-        <Form schema={schema} validator={validator} />
+        <Form schema={schema} validator={validator} onSubmit={(v) => console.log(v.formData)} />
       </div>
     </div>
   );
